@@ -50,7 +50,7 @@ find_package(catkin REQUIRED COMPONENTS
 add_message_files(
   FILES
   footend_pos.msg
-  motor_pos.msg
+  servo_pos.msg
 )
 
 ## Generate services in the 'srv' folder

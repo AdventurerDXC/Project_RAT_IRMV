@@ -1,0 +1,2 @@
+inv_kinematics:servo_control
+-DCATKIN_DEVEL_PREFIX=/home/xcdai/Documents/Project_IRMV/Project_RAT_IRMV/IRMV_RAT_ws/devel -DCMAKE_INSTALL_PREFIX=/home/xcdai/Documents/Project_IRMV/Project_RAT_IRMV/IRMV_RAT_ws/install -G Unix Makefiles
