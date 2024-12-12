@@ -75,7 +75,7 @@ def callback(servo_data):
     rollPulse = int(1500 + servo_data.rollAng / 180 * 2000)
     pitch1Pulse = int(1500 + (servo_data.pitchAng1 - 45) / 180 * 2000)
     pitch2Pulse = int(1500 + (servo_data.pitchAng2 - 45) / 180 * 2000)
-    servos = [8, rollPulse, 9, pitch1Pulse, 10, pitch2Pulse]
+    servos = [0, rollPulse, 1, pitch1Pulse, 2, pitch2Pulse]
     setPWMServoMoveByArray(servos, 3, 200)
 
 if __name__ == '__main__':

@@ -36,7 +36,7 @@ def invKinematics(footend_data):
         real_y = y + dY
     # legID = (legID + 1) % 4
 
-    Zad = math.sqrt(real_x*real_x + real_y*real_y + real_z*real_z - dR*dR)
+    Zad = math.sqrt(real_y*real_y + real_z*real_z - dR*dR)
     gamma1 = math.atan2(Zad, dR)
     gamma2 = math.atan2(math.fabs(real_z), math.fabs(real_y))
     rollAng = gamma2 - gamma1
