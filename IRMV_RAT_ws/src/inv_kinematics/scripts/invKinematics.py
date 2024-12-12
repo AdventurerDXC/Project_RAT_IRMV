@@ -61,7 +61,7 @@ def callback(footend_data):
 def talker():
     """Publish anticipated motor's position."""
     global servo_data
-    rate = rospy.Rate(10) # 10hz
+    rate = rospy.Rate(5) # 10hz
     while not rospy.is_shutdown():
         rospy.loginfo("Published servo position (%f, %f, %f)", servo_data.rollAng, servo_data.pitchAng1, servo_data.pitchAng2)
         pub.publish(servo_data)

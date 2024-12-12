@@ -10,7 +10,7 @@ LOBOT_CMD_ACTION_GROUP_STOP      = 7
 LOBOT_CMD_ACTION_GROUP_SPEED     = 11
 LOBOT_CMD_GET_BATTERY_VOLTAGE    = 15
 
-serialHandle = serial.Serial("/dev/ttyS0", 9600)  # 初始化串口， 波特率为9600
+serialHandle = serial.Serial("/dev/ttyUSB0", 9600)  # 初始化串口， 波特率为9600
 
 # 控制单个PWM舵机转动
 def setPWMServoMove(servo_id, servo_pulse, time):
@@ -72,11 +72,11 @@ def listener():
 
 def callback(servo_data):
     rospy.loginfo("Received servo position (%f, %f, %f)", servo_data.rollAng, servo_data.pitchAng1, servo_data.pitchAng2)
-    rollPulse = 1500 + servo_data.rollAng / 180 * 2000
-    pitch1Pulse = 1500 + (servo_data.pitchAng1 - 45) / 180 * 2000
-    pitch2Pulse = 1500 + (servo_data.pitchAng2 - 45) / 180 * 2000
-    servos = [1, rollPulse, 2, pitch1Pulse, 3, pitch2Pulse]
-    setPWMServoMoveByArray(servos, 3, 80)
+    rollPulse = int(1500 + servo_data.rollAng / 180 * 2000)
+    pitch1Pulse = int(1500 + (servo_data.pitchAng1 - 45) / 180 * 2000)
+    pitch2Pulse = int(1500 + (servo_data.pitchAng2 - 45) / 180 * 2000)
+    servos = [8, rollPulse, 9, pitch1Pulse, 10, pitch2Pulse]
+    setPWMServoMoveByArray(servos, 3, 200)
 
 if __name__ == '__main__':
     listener()
