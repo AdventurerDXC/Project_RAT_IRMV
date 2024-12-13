@@ -7,12 +7,16 @@ def talker():
     pub = rospy.Publisher('/ratbot/footend/pos', footend_pos, queue_size=10)
     rospy.init_node('cpg_node', anonymous=False)
     rate = rospy.Rate(5) # 10hz
+    footend_data = footend_pos()
     while not rospy.is_shutdown():
-        footend_data = footend_pos()
-        footend_data.x = 58.44 + 15*math.cos(math.pi*rospy.get_time())
-        footend_data.y = 40.15
-        footend_data.z = -86.83 + 15*math.sin(math.pi*rospy.get_time())
-        rospy.loginfo("Received footend position (%f, %f, %f)", footend_data.x, footend_data.y, footend_data.z)
+        x = 58.44 + 15*math.cos(math.pi*rospy.get_time())
+        y = 40.15
+        z = -86.83 + 15*math.sin(math.pi*rospy.get_time())
+        footend_data.footend_FL = [x, y, z]
+        footend_data.footend_FR = [x, -y, z]
+        footend_data.footend_BL = [-x, y, z]
+        footend_data.footend_BR = [-x, -y, z]
+        rospy.loginfo(f"Received footend-FL position: {footend_data.footend_FL}")
         pub.publish(footend_data)
         rate.sleep()
 

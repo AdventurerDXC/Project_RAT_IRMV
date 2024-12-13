@@ -5,14 +5,13 @@ from inv_kinematics.msg import footend_pos
 from inv_kinematics.msg import servo_pos
 
 servo_data = servo_pos()
-legID = 0
 
 def invKinematics(footend_data):
     global servo_data
-    global legID
-    x = footend_data.x
-    y = footend_data.y
-    z = footend_data.z
+    FL = list(footend_data.footend_FL)
+    FR = list(footend_data.footend_FR)
+    BL = list(footend_data.footend_BL)
+    BR = list(footend_data.footend_BR)
     L1 = 12
     L2 = 35
     L3 = 31.75
@@ -21,41 +20,44 @@ def invKinematics(footend_data):
     dY = 21
     dZ = 31.15
 
-    real_z = z + dZ
-    if legID == 0:
-        real_x = x - dX
-        real_y = y - dY
-    elif legID == 1:
-        real_x = x + dX
-        real_y = y - dY
-    elif legID == 2:
-        real_x = x - dX
-        real_y = y + dY
-    else:
-        real_x = x + dX
-        real_y = y + dY
-    # legID = (legID + 1) % 4
+    FL[0] -= dX
+    FL[1] -= dY
+    FL[2] += dZ
+    FR[0] -= dX
+    FR[1] += dY
+    FR[2] += dZ
+    BL[0] += dX
+    BL[1] -= dY
+    BL[2] += dZ
+    BR[0] += dX
+    BR[1] += dY
+    BR[2] += dZ
+    footend_list = [FL, FR, BL, BR]
+    servopos_list = []
 
-    Zad = math.sqrt(real_y*real_y + real_z*real_z - dR*dR)
-    gamma1 = math.atan2(Zad, dR)
-    gamma2 = math.atan2(math.fabs(real_z), math.fabs(real_y))
-    rollAng = gamma2 - gamma1
-    deltaAng2_1 = math.asin((real_x*real_x + Zad*Zad - (L1+L3)*(L1+L3) - L2*L2)/2/L2/(L1+L3))
-    M = -L2*math.cos(deltaAng2_1)
-    N = L1 + L3 + L2*math.sin(deltaAng2_1)
-    pitchAng1 = 2*math.atan((N - math.sqrt(M*M + N*N - real_x*real_x))/(M + real_x))
-    pitchAng2 = pitchAng1 + deltaAng2_1
+    for leg in footend_list:
+        [x, y, z] = leg
+        Zad = math.sqrt(y*y + z*z - dR*dR)
+        gamma1 = math.atan2(Zad, dR)
+        gamma2 = math.atan2(math.fabs(z), math.fabs(y))
+        rollAng = math.degrees(gamma2 - gamma1)
+        deltaAng2_1 = math.asin((x*x + Zad*Zad - (L1+L3)*(L1+L3) - L2*L2)/2/L2/(L1+L3))
+        M = -L2*math.cos(deltaAng2_1)
+        N = L1 + L3 + L2*math.sin(deltaAng2_1)
+        pitchAng1 = math.degrees(2*math.atan((N - math.sqrt(M*M + N*N - x*x))/(M + x)))
+        pitchAng2 = math.degrees(pitchAng1 + deltaAng2_1)
+        servopos_list.append([rollAng, pitchAng1, pitchAng2])
 
-    servo_data.rollAng = math.degrees(rollAng)
-    servo_data.pitchAng1 = math.degrees(pitchAng1)
-    servo_data.pitchAng2 = math.degrees(pitchAng2)
-    servo_data.legID = legID
+    servo_data.leg_FL = servopos_list[0]
+    servo_data.leg_FR = servopos_list[1]
+    servo_data.leg_BL = servopos_list[2]
+    servo_data.leg_BR = servopos_list[3]
+
     return servo_data
 
 def callback(footend_data):
     """Receive expected footend position."""
     global servo_data
-    # rospy.loginfo("Received footend position (%f, %f, %f)", footend_data.x, footend_data.y, footend_data.z)
     servo_data = invKinematics(footend_data)
 
 def talker():
@@ -63,7 +65,7 @@ def talker():
     global servo_data
     rate = rospy.Rate(5) # 10hz
     while not rospy.is_shutdown():
-        rospy.loginfo("Published servo position (%f, %f, %f)", servo_data.rollAng, servo_data.pitchAng1, servo_data.pitchAng2)
+        rospy.loginfo(f"Published servo-FL position: {servo_data.leg_FL}")
         pub.publish(servo_data)
         rate.sleep()
 
