@@ -71,18 +71,25 @@ def listener():
     rospy.spin()
 
 def callback(servo_data):
-    rospy.loginfo("Received servo-FL position: {servo_data.leg_FL}")
-    servoPulse = [list(servo_data.leg_FL), list(servo_data.leg_FR), list(servo_data.leg_BL), list(servo_data.leg_BR)]
+    # rospy.loginfo(f"Received servo-FL position: {servo_data.servo_FL}")
+    servoPulse = [list(servo_data.servo_BR), list(servo_data.servo_BL), list(servo_data.servo_FL), list(servo_data.servo_FR)]
     for i in range(len(servoPulse)):
-        servoPulse[i][0] = int(1500 + servoPulse[i][0] / 180 * 2000)
-        servoPulse[i][1] = int(1500 + (servoPulse[i][1] - 45) / 180 * 2000)
-        servoPulse[i][2] = int(1500 + (servoPulse[i][2] - 45) / 180 * 2000)
-        servoPulse[i].insert(0, 3*i)
-        servoPulse[i].insert(2, 3*i+1)
-        servoPulse[i].insert(4, 3*i+2)
+        if i == 0 or i == 3:
+            servoPulse[i][0] = int(1500 + servoPulse[i][0] / 180 * 2000)
+            servoPulse[i][1] = int(1500 + (servoPulse[i][1] - 45) / 180 * 2000)
+            servoPulse[i][2] = int(1500 + (servoPulse[i][2] - 45) / 180 * 2000)
+        else:
+            servoPulse[i][0] = int(1500 - servoPulse[i][0] / 180 * 2000)
+            servoPulse[i][1] = int(1500 - (servoPulse[i][1] - 45) / 180 * 2000)
+            servoPulse[i][2] = int(1500 - (servoPulse[i][2] - 45) / 180 * 2000)
+        servoPulse[i].insert(0, 4*i)
+        servoPulse[i].insert(2, 4*i+1)
+        servoPulse[i].insert(4, 4*i+2)
 
     servoPulse = sum(servoPulse, [])
-    setPWMServoMoveByArray(servoPulse, 12, 200)
+
+    rospy.loginfo(f"Sent servo position: {servoPulse}")
+    setPWMServoMoveByArray(servoPulse, 12, 90)
 
 if __name__ == '__main__':
     listener()

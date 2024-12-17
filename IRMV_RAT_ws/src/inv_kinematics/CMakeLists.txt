@@ -162,6 +162,7 @@ include_directories(
  catkin_install_python(PROGRAMS
    scripts/invKinematics.py
    scripts/circle_test.py
+   scripts/trot_gait_test.py
    DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
  )
 

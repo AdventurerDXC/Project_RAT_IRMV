@@ -1,0 +1,7 @@
+<launch>
+    <node pkg="inv_kinematics" type="trot_gait_test.py" name="cpg_node" output="screen" />
+
+    <node pkg="inv_kinematics" type="invKinematics.py" name="inv_kinematics" output="screen" />
+
+    <node pkg="servo_control" type="servoControl.py" name="servo_control" output="screen" />
+</launch>

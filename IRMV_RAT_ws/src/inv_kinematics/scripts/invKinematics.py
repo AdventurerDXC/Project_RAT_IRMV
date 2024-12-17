@@ -16,20 +16,21 @@ def invKinematics(footend_data):
     L2 = 35
     L3 = 31.75
     dR = 19.5
-    dX = 52.25
+    dX1 = 52.25
+    dX2 = 42.25
     dY = 21
     dZ = 31.15
 
-    FL[0] -= dX
+    FL[0] -= dX1
     FL[1] -= dY
     FL[2] += dZ
-    FR[0] -= dX
+    FR[0] -= dX1
     FR[1] += dY
     FR[2] += dZ
-    BL[0] += dX
+    BL[0] += dX2
     BL[1] -= dY
     BL[2] += dZ
-    BR[0] += dX
+    BR[0] += dX2
     BR[1] += dY
     BR[2] += dZ
     footend_list = [FL, FR, BL, BR]
@@ -45,13 +46,13 @@ def invKinematics(footend_data):
         M = -L2*math.cos(deltaAng2_1)
         N = L1 + L3 + L2*math.sin(deltaAng2_1)
         pitchAng1 = math.degrees(2*math.atan((N - math.sqrt(M*M + N*N - x*x))/(M + x)))
-        pitchAng2 = math.degrees(pitchAng1 + deltaAng2_1)
+        pitchAng2 = pitchAng1 + math.degrees(deltaAng2_1)
         servopos_list.append([rollAng, pitchAng1, pitchAng2])
 
-    servo_data.leg_FL = servopos_list[0]
-    servo_data.leg_FR = servopos_list[1]
-    servo_data.leg_BL = servopos_list[2]
-    servo_data.leg_BR = servopos_list[3]
+    servo_data.servo_FL = servopos_list[0]
+    servo_data.servo_FR = servopos_list[1]
+    servo_data.servo_BL = servopos_list[2]
+    servo_data.servo_BR = servopos_list[3]
 
     return servo_data
 
@@ -63,9 +64,9 @@ def callback(footend_data):
 def talker():
     """Publish anticipated motor's position."""
     global servo_data
-    rate = rospy.Rate(5) # 10hz
+    rate = rospy.Rate(10) # 10hz
     while not rospy.is_shutdown():
-        rospy.loginfo(f"Published servo-FL position: {servo_data.leg_FL}")
+        # rospy.loginfo(f"Published servo-FL position: {servo_data.servo_FL}")
         pub.publish(servo_data)
         rate.sleep()
 
