@@ -17,11 +17,6 @@ def trot_gait(time, pace, height):
     zt = height * (1 - cos(sigma)) / 2
     xt = pace * ((sigma - sin(sigma)) / (2 * pi))
 
-    # 输出x
-    x_fl = x0 + xt
-    x_fr = x0 + xt
-    x_bl = -x0 + xt
-    x_br = -x0 + xt
     # 输出y
     y_fl = y0
     y_fr = -y0
@@ -29,12 +24,22 @@ def trot_gait(time, pace, height):
     y_br = -y0
 
     if time <= dutyRatio*cycle:
+        # 输出x
+        x_fl = x0 + xt
+        x_fr = x0
+        x_bl = -x0
+        x_br = -x0 + xt
         # 输出z
         z_fl = z0 + zt
         z_fr = z0
         z_bl = z0
         z_br = z0 + zt
     else:
+        # 输出x
+        x_fl = x0
+        x_fr = x0 + xt
+        x_bl = -x0 + xt
+        x_br = -x0
         # 输出z
         z_fl = z0
         z_fr = z0 + zt
