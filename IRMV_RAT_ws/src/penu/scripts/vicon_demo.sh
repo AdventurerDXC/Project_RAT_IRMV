@@ -1,0 +1,3 @@
+roslaunch vicon_bridge vicon.launch
+sleep 1
+rosrun soft_device vicon_rece_demo_node
