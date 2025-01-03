@@ -7,7 +7,8 @@ dutyRatio = 0.5  # 占空比为0.5个周期
 cycle = 1        # 循环周期
 time = 0         # 当前时刻
 step = 0.05     # 步长
-x0 = 58          # 起始点足端在vicon坐标系下的偏置
+xf0 = 58          # 起始点足端在vicon坐标系下的偏置
+xb0 = -36.5
 y0 = 40.15
 z0 = -85
 
@@ -25,10 +26,10 @@ def trot_gait(time, pace, height):
 
     if time <= dutyRatio*cycle:
         # 输出x
-        x_fl = x0 + xt
-        x_fr = x0
-        x_bl = -x0
-        x_br = -x0 + xt
+        x_fl = xf0 + xt
+        x_fr = xf0
+        x_bl = xb0
+        x_br = xb0 + xt
         # 输出z
         z_fl = z0 + zt
         z_fr = z0
@@ -36,10 +37,10 @@ def trot_gait(time, pace, height):
         z_br = z0 + zt
     else:
         # 输出x
-        x_fl = x0
-        x_fr = x0 + xt
-        x_bl = -x0 + xt
-        x_br = -x0
+        x_fl = xf0
+        x_fr = xf0 + xt - pace
+        x_bl = xb0 + xt - pace
+        x_br = xb0
         # 输出z
         z_fl = z0
         z_fr = z0 + zt
@@ -60,7 +61,8 @@ def talker():
             time = 0
         else:
             time += step
-            footendXYZ = trot_gait(time, 20, 15)
+            
+        footendXYZ = trot_gait(time, 25, 15)
 
         footend_data.footend_FL = [footendXYZ[0], footendXYZ[4], footendXYZ[8]]
         footend_data.footend_FR = [footendXYZ[1], footendXYZ[5], footendXYZ[9]]
