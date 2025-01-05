@@ -1,10 +1,10 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 import rospy
 from math import sin, cos, pi
 from inv_kinematics.msg import footend_pos
 
-dutyRatio = 0.5  # 占空比为0.5个周期
-cycle = 1        # 循环周期
+dutyRatio = 0.25  # 占空比为0.25个周期
+cycle = 1.2        # 循环周期
 time = 0         # 当前时刻
 step = 0.05     # 步长
 xf0 = 58          # 起始点足端在vicon坐标系下的偏置
@@ -24,26 +24,48 @@ def trot_gait(time, pace, height):
     y_bl = y0
     y_br = -y0
 
-    if time <= dutyRatio*cycle:
+    if time <= dutyRatio*cycle:      # 左前足迈步，其余不动
         # 输出x
         x_fl = xf0 + xt
         x_fr = xf0
         x_bl = xb0
-        x_br = xb0 + xt
+        x_br = xb0
         # 输出z
         z_fl = z0 + zt
         z_fr = z0
         z_bl = z0
-        z_br = z0 + zt
-    else:
+        z_br = z0
+    elif time <= 2*dutyRatio*cycle:  # 右后足迈步，其余不动
         # 输出x
         x_fl = xf0
-        x_fr = xf0 + xt - pace
-        x_bl = xb0 + xt - pace
+        x_fr = xf0
+        x_bl = xb0
+        x_br = xb0 + xt - pace
+        # 输出z
+        z_fl = z0
+        z_fr = z0
+        z_bl = z0
+        z_br = z0 + zt
+    elif time <= 3*dutyRatio*cycle:  # 右前足迈步，其余不动
+        # 输出x
+        x_fl = xf0
+        x_fr = xf0 + xt - 2*pace
+        x_bl = xb0
         x_br = xb0
         # 输出z
         z_fl = z0
         z_fr = z0 + zt
+        z_bl = z0
+        z_br = z0
+    else:  # 左后足迈步，其余不动
+        # 输出x
+        x_fl = xf0
+        x_fr = xf0
+        x_bl = xb0 + xt - 3*pace
+        x_br = xb0
+        # 输出z
+        z_fl = z0
+        z_fr = z0
         z_bl = z0 + zt
         z_br = z0
 
@@ -57,7 +79,7 @@ def talker():
     footend_data = footend_pos()
     
     while not rospy.is_shutdown():
-        if time >= cycle:  # 一个完整的运动周期结束trot
+        if time >= cycle:  # 一个完整的运动周期结束walk
             time = 0
         else:
             time += step

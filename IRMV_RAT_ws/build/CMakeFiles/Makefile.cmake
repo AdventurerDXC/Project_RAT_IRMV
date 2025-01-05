@@ -39,6 +39,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/src/inv_kinematics/scripts/circle_test.py"
   "/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/src/inv_kinematics/scripts/invKinematics.py"
   "/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/src/inv_kinematics/scripts/trot_gait_test.py"
+  "/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/src/inv_kinematics/scripts/walk_gait_test.py"
   "/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/src/penu/CMakeLists.txt"
   "/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/src/penu/package.xml"
   "/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/src/penu/scripts/vicon_publisher.py"

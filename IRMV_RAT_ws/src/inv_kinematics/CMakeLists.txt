@@ -163,6 +163,7 @@ include_directories(
    scripts/invKinematics.py
    scripts/circle_test.py
    scripts/trot_gait_test.py
+   scripts/walk_gait_test.py
    DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
  )
 

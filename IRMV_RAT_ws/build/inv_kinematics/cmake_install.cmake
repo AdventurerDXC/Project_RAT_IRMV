@@ -103,3 +103,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/inv_kinematics" TYPE PROGRAM FILES "/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/build/inv_kinematics/catkin_generated/installspace/trot_gait_test.py")
 endif()
 
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/inv_kinematics" TYPE PROGRAM FILES "/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/build/inv_kinematics/catkin_generated/installspace/walk_gait_test.py")
+endif()
+

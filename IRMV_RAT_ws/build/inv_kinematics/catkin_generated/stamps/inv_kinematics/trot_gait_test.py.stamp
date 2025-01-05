@@ -62,7 +62,7 @@ def talker():
         else:
             time += step
             
-        footendXYZ = trot_gait(time, 20, 0)
+        footendXYZ = trot_gait(time, 25, 15)
 
         footend_data.footend_FL = [footendXYZ[0], footendXYZ[4], footendXYZ[8]]
         footend_data.footend_FR = [footendXYZ[1], footendXYZ[5], footendXYZ[9]]

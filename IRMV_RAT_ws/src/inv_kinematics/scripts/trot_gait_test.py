@@ -10,7 +10,7 @@ step = 0.05     # 步长
 xf0 = 58          # 起始点足端在vicon坐标系下的偏置
 xb0 = -36.5
 y0 = 40.15
-z0 = -85
+z0 = -100
 
 def trot_gait(time, pace, height):
     # 小跑步态执行函数，pace为摆线的垂直投影长度，height为摆线的最大高度
