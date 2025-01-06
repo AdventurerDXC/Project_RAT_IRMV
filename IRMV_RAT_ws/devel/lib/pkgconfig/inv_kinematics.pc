@@ -1,8 +1,0 @@
-prefix=/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/devel
-
-Name: inv_kinematics
-Description: Description of inv_kinematics
-Version: 0.0.0
-Cflags: -I/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/devel/include
-Libs: -L${prefix}/lib 
-Requires: message_runtime rospy std_msgs

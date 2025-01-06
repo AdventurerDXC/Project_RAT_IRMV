@@ -3,18 +3,21 @@ import rospy
 from math import sin, cos, pi
 from inv_kinematics.msg import footend_pos
 
-dutyRatio = 0.5  # 占空比为0.5个周期
-cycle = 1        # 循环周期
-time = 0         # 当前时刻
-step = 0.05     # 步长
+dutyRatio = 0.75  # 占空比为0.75个周期
+cycle = 1         # 单步周期
+time = 0          # 当前时刻
+step = 0.05       # 步长
+rhythm = 0        # 步态节律（偶数为左前和右后腿摆动，奇数为右前和左后腿摆动）
 xf0 = 58          # 起始点足端在vicon坐标系下的偏置
 xb0 = -36.5
 y0 = 40.15
-z0 = -100
+z0 = -90
 
-def trot_gait(time, pace, height):
+def trot_gait(time, rhythm, pace, height):
     # 小跑步态执行函数，pace为摆线的垂直投影长度，height为摆线的最大高度
-    sigma = 2 * pi * time / (dutyRatio * cycle)
+    valid_t_range1 = (time > cycle*(1-dutyRatio)/2)
+    valid_t_range2 = (time < 1-cycle*(1-dutyRatio)/2)
+    sigma = 2 * pi * (time - cycle*(1-dutyRatio)/2) / (dutyRatio * cycle)
     zt = height * (1 - cos(sigma)) / 2
     xt = pace * ((sigma - sin(sigma)) / (2 * pi))
 
@@ -24,33 +27,53 @@ def trot_gait(time, pace, height):
     y_bl = y0
     y_br = -y0
 
-    if time <= dutyRatio*cycle:
-        # 输出x
-        x_fl = xf0 + xt
+    if rhythm % 2 == 0:
         x_fr = xf0
         x_bl = xb0
-        x_br = xb0 + xt
-        # 输出z
-        z_fl = z0 + zt
         z_fr = z0
         z_bl = z0
-        z_br = z0 + zt
+
+        if valid_t_range1 and valid_t_range2:
+            x_fl = xf0 + xt
+            x_br = xb0 + xt
+            z_fl = z0 + zt
+            z_br = z0 + zt
+        if not valid_t_range1:
+            x_fl = xf0
+            x_br = xb0
+            z_fl = z0
+            z_br = z0
+        if not valid_t_range2:
+            x_fl = xf0 + pace
+            x_br = xb0 + pace
+            z_fl = z0
+            z_br = z0
     else:
-        # 输出x
         x_fl = xf0
-        x_fr = xf0 + xt - pace
-        x_bl = xb0 + xt - pace
         x_br = xb0
-        # 输出z
         z_fl = z0
-        z_fr = z0 + zt
-        z_bl = z0 + zt
         z_br = z0
+
+        if valid_t_range1 and valid_t_range2:  
+            x_fr = xf0 + xt
+            x_bl = xb0 + xt
+            z_fr = z0 + zt
+            z_bl = z0 + zt
+        if not valid_t_range1:
+            x_fr = xf0
+            x_bl = xb0
+            z_fr = z0
+            z_bl = z0
+        if not valid_t_range2:
+            x_fr = xf0 + pace
+            x_bl = xb0 + pace
+            z_fr = z0
+            z_bl = z0
 
     return x_fl, x_fr, x_bl, x_br, y_fl, y_fr, y_bl, y_br, z_fl, z_fr, z_bl, z_br
 
 def talker():
-    global time
+    global time, rhythm
     pub = rospy.Publisher('/ratbot/footend/pos', footend_pos, queue_size=10)
     rospy.init_node('cpg_node', anonymous=False)
     rate = rospy.Rate(20)  # 20hz
@@ -61,8 +84,9 @@ def talker():
             time = 0
         else:
             time += step
+            rhythm += 1
             
-        footendXYZ = trot_gait(time, 25, 15)
+        footendXYZ = trot_gait(time, rhythm, 0, 10)
 
         footend_data.footend_FL = [footendXYZ[0], footendXYZ[4], footendXYZ[8]]
         footend_data.footend_FR = [footendXYZ[1], footendXYZ[5], footendXYZ[9]]
