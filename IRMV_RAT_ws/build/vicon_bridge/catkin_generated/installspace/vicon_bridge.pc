@@ -1,0 +1,8 @@
+prefix=/home/xcdai/Documents/Project_IRMV/Project_RAT_IRMV/IRMV_RAT_ws/install
+
+Name: vicon_bridge
+Description: Description of vicon_bridge
+Version: 1.0.1
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib 
+Requires: dynamic_reconfigure geometry_msgs message_runtime roscpp
