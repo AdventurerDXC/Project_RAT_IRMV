@@ -85,15 +85,18 @@ def trot_gait(time, rhythm, pace, height):
     return x_fl, x_fr, x_bl, x_br, y_fl, y_fr, y_bl, y_br, z_fl, z_fr, z_bl, z_br
 
 def initialize():
-    
+    init_time = 5
     footend_data = footend_pos()
     footend_data.footend_FL = [xf0, y0, z0]
     footend_data.footend_FR = [xf0, -y0, z0]
     footend_data.footend_BL = [xb0, y0, z0]
     footend_data.footend_BR = [xb0, -y0, z0]
-    for _ in range(5):  # 每隔0.2秒发布一次初始化数据
+    while not rospy.is_shutdown():
         pub.publish(footend_data)
-        rospy.sleep(0.2)
+        rate.sleep()
+        init_time -= 1/20
+        if(init_time <= 0):
+            break
 
 def talker():
     global time, rhythm
