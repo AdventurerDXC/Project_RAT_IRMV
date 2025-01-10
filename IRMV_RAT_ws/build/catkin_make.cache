@@ -1,2 +1,2 @@
 inv_kinematics:penu:servo_control:vicon_bridge
--DCATKIN_DEVEL_PREFIX=/home/xcdai/Documents/Project_IRMV/Project_RAT_IRMV/IRMV_RAT_ws/devel -DCMAKE_INSTALL_PREFIX=/home/xcdai/Documents/Project_IRMV/Project_RAT_IRMV/IRMV_RAT_ws/install -G Unix Makefiles
+-DCATKIN_DEVEL_PREFIX=/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/devel -DCMAKE_INSTALL_PREFIX=/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/install -G Unix Makefiles

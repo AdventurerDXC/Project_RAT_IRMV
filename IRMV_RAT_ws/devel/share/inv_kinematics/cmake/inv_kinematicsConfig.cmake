@@ -67,14 +67,14 @@ set(inv_kinematics_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("TRUE" STREQUAL "TRUE")
-  set(inv_kinematics_SOURCE_PREFIX /home/xcdai/Documents/Project_IRMV/Project_RAT_IRMV/IRMV_RAT_ws/src/inv_kinematics)
-  set(inv_kinematics_DEVEL_PREFIX /home/xcdai/Documents/Project_IRMV/Project_RAT_IRMV/IRMV_RAT_ws/devel)
+  set(inv_kinematics_SOURCE_PREFIX /home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/src/inv_kinematics)
+  set(inv_kinematics_DEVEL_PREFIX /home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/devel)
   set(inv_kinematics_INSTALL_PREFIX "")
   set(inv_kinematics_PREFIX ${inv_kinematics_DEVEL_PREFIX})
 else()
   set(inv_kinematics_SOURCE_PREFIX "")
   set(inv_kinematics_DEVEL_PREFIX "")
-  set(inv_kinematics_INSTALL_PREFIX /home/xcdai/Documents/Project_IRMV/Project_RAT_IRMV/IRMV_RAT_ws/install)
+  set(inv_kinematics_INSTALL_PREFIX /home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/install)
   set(inv_kinematics_PREFIX ${inv_kinematics_INSTALL_PREFIX})
 endif()
 
@@ -91,9 +91,9 @@ endif()
 # flag project as catkin-based to distinguish if a find_package()-ed project is a catkin project
 set(inv_kinematics_FOUND_CATKIN_PROJECT TRUE)
 
-if(NOT "/home/xcdai/Documents/Project_IRMV/Project_RAT_IRMV/IRMV_RAT_ws/devel/include " STREQUAL " ")
+if(NOT "/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/devel/include " STREQUAL " ")
   set(inv_kinematics_INCLUDE_DIRS "")
-  set(_include_dirs "/home/xcdai/Documents/Project_IRMV/Project_RAT_IRMV/IRMV_RAT_ws/devel/include")
+  set(_include_dirs "/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/devel/include")
   if(NOT " " STREQUAL " ")
     set(_report "Check the issue tracker '' and consider creating a ticket if the problem has not been reported yet.")
   elseif(NOT " " STREQUAL " ")
@@ -110,7 +110,7 @@ if(NOT "/home/xcdai/Documents/Project_IRMV/Project_RAT_IRMV/IRMV_RAT_ws/devel/in
         message(FATAL_ERROR "Project 'inv_kinematics' specifies '${idir}' as an include dir, which is not found.  It does not exist in '${include}'.  ${_report}")
       endif()
     else()
-      message(FATAL_ERROR "Project 'inv_kinematics' specifies '${idir}' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '/home/xcdai/Documents/Project_IRMV/Project_RAT_IRMV/IRMV_RAT_ws/src/inv_kinematics/${idir}'.  ${_report}")
+      message(FATAL_ERROR "Project 'inv_kinematics' specifies '${idir}' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/src/inv_kinematics/${idir}'.  ${_report}")
     endif()
     _list_append_unique(inv_kinematics_INCLUDE_DIRS ${include})
   endforeach()
@@ -154,7 +154,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/xcdai/Documents/Project_IRMV/Project_RAT_IRMV/IRMV_RAT_ws/devel/lib;/home/xcdai/Documents/Project_IRMV/Project_RAT_IRMV/IRMV_RAT_ws/devel/lib;/home/xcdai/Documents/Coverage_Path_Planning_ROS/devel/lib;/opt/ros/noetic/lib)
+    foreach(path /home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/devel/lib;/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/devel/lib;/opt/ros/noetic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)

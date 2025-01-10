@@ -1,36 +1,54 @@
-
-# Consider dependencies only in project.
-set(CMAKE_DEPENDS_IN_PROJECT_ONLY OFF)
-
 # The set of languages for which implicit dependencies are needed:
 set(CMAKE_DEPENDS_LANGUAGES
+  "CXX"
+  )
+# The set of files for implicit dependencies of each language:
+set(CMAKE_DEPENDS_CHECK_CXX
+  "/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/src/vicon_bridge/vicon_sdk/DataStream/ViconCGStream/Dummy.cpp" "/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/build/vicon_bridge/CMakeFiles/vicon_sdk.dir/vicon_sdk/DataStream/ViconCGStream/Dummy.cpp.o"
+  "/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/src/vicon_bridge/vicon_sdk/DataStream/ViconCGStreamClient/CGStreamReaderWriter.cpp" "/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/build/vicon_bridge/CMakeFiles/vicon_sdk.dir/vicon_sdk/DataStream/ViconCGStreamClient/CGStreamReaderWriter.cpp.o"
+  "/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/src/vicon_bridge/vicon_sdk/DataStream/ViconCGStreamClient/ViconCGStreamBayer.cpp" "/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/build/vicon_bridge/CMakeFiles/vicon_sdk.dir/vicon_sdk/DataStream/ViconCGStreamClient/ViconCGStreamBayer.cpp.o"
+  "/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/src/vicon_bridge/vicon_sdk/DataStream/ViconCGStreamClient/ViconCGStreamClient.cpp" "/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/build/vicon_bridge/CMakeFiles/vicon_sdk.dir/vicon_sdk/DataStream/ViconCGStreamClient/ViconCGStreamClient.cpp.o"
+  "/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/src/vicon_bridge/vicon_sdk/DataStream/ViconCGStreamClientSDK/CGClient.cpp" "/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/build/vicon_bridge/CMakeFiles/vicon_sdk.dir/vicon_sdk/DataStream/ViconCGStreamClientSDK/CGClient.cpp.o"
+  "/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/src/vicon_bridge/vicon_sdk/DataStream/ViconDataStreamSDKCore/CoreClient.cpp" "/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/build/vicon_bridge/CMakeFiles/vicon_sdk.dir/vicon_sdk/DataStream/ViconDataStreamSDKCore/CoreClient.cpp.o"
+  "/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/src/vicon_bridge/vicon_sdk/DataStream/ViconDataStreamSDKCore/CoreClientTimingLog.cpp" "/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/build/vicon_bridge/CMakeFiles/vicon_sdk.dir/vicon_sdk/DataStream/ViconDataStreamSDKCore/CoreClientTimingLog.cpp.o"
+  "/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/src/vicon_bridge/vicon_sdk/DataStream/ViconDataStreamSDKCore/RetimerUtils.cpp" "/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/build/vicon_bridge/CMakeFiles/vicon_sdk.dir/vicon_sdk/DataStream/ViconDataStreamSDKCore/RetimerUtils.cpp.o"
+  "/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/src/vicon_bridge/vicon_sdk/DataStream/ViconDataStreamSDKCore/RetimingClient.cpp" "/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/build/vicon_bridge/CMakeFiles/vicon_sdk.dir/vicon_sdk/DataStream/ViconDataStreamSDKCore/RetimingClient.cpp.o"
+  "/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/src/vicon_bridge/vicon_sdk/DataStream/ViconDataStreamSDKCore/RetimingCore.cpp" "/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/build/vicon_bridge/CMakeFiles/vicon_sdk.dir/vicon_sdk/DataStream/ViconDataStreamSDKCore/RetimingCore.cpp.o"
+  "/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/src/vicon_bridge/vicon_sdk/DataStream/ViconDataStreamSDKCore/SegmentPoseReader.cpp" "/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/build/vicon_bridge/CMakeFiles/vicon_sdk.dir/vicon_sdk/DataStream/ViconDataStreamSDKCore/SegmentPoseReader.cpp.o"
+  "/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/src/vicon_bridge/vicon_sdk/DataStream/ViconDataStreamSDKCore/WirelessConfiguration.cpp" "/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/build/vicon_bridge/CMakeFiles/vicon_sdk.dir/vicon_sdk/DataStream/ViconDataStreamSDKCore/WirelessConfiguration.cpp.o"
+  "/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/src/vicon_bridge/vicon_sdk/DataStream/ViconDataStreamSDKCoreUtils/AxisMapping.cpp" "/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/build/vicon_bridge/CMakeFiles/vicon_sdk.dir/vicon_sdk/DataStream/ViconDataStreamSDKCoreUtils/AxisMapping.cpp.o"
+  "/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/src/vicon_bridge/vicon_sdk/DataStream/ViconDataStreamSDKCoreUtils/ClientUtils.cpp" "/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/build/vicon_bridge/CMakeFiles/vicon_sdk.dir/vicon_sdk/DataStream/ViconDataStreamSDKCoreUtils/ClientUtils.cpp.o"
+  "/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/src/vicon_bridge/vicon_sdk/DataStream/ViconDataStreamSDK_C/CClient.cpp" "/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/build/vicon_bridge/CMakeFiles/vicon_sdk.dir/vicon_sdk/DataStream/ViconDataStreamSDK_C/CClient.cpp.o"
+  "/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/src/vicon_bridge/vicon_sdk/DataStream/ViconDataStreamSDK_C/CRetimingClient.cpp" "/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/build/vicon_bridge/CMakeFiles/vicon_sdk.dir/vicon_sdk/DataStream/ViconDataStreamSDK_C/CRetimingClient.cpp.o"
+  "/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/src/vicon_bridge/vicon_sdk/DataStream/ViconDataStreamSDK_CPP/DataStreamClient.cpp" "/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/build/vicon_bridge/CMakeFiles/vicon_sdk.dir/vicon_sdk/DataStream/ViconDataStreamSDK_CPP/DataStreamClient.cpp.o"
+  "/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/src/vicon_bridge/vicon_sdk/DataStream/ViconDataStreamSDK_CPP/DataStreamRetimingClient.cpp" "/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/build/vicon_bridge/CMakeFiles/vicon_sdk.dir/vicon_sdk/DataStream/ViconDataStreamSDK_CPP/DataStreamRetimingClient.cpp.o"
+  "/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/src/vicon_bridge/vicon_sdk/StreamCommon/CGStreamAsyncReaderWriter.cpp" "/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/build/vicon_bridge/CMakeFiles/vicon_sdk.dir/vicon_sdk/StreamCommon/CGStreamAsyncReaderWriter.cpp.o"
+  )
+set(CMAKE_CXX_COMPILER_ID "GNU")
+
+# Preprocessor definitions for this target.
+set(CMAKE_TARGET_DEFINITIONS_CXX
+  "BOOST_ALL_NO_LIB"
+  "BOOST_ATOMIC_DYN_LINK"
+  "BOOST_DATE_TIME_DYN_LINK"
+  "BOOST_THREAD_DYN_LINK"
+  "ROSCONSOLE_BACKEND_LOG4CXX"
+  "ROS_BUILD_SHARED_LIBS=1"
+  "ROS_PACKAGE_NAME=\"vicon_bridge\""
+  "vicon_sdk_EXPORTS"
   )
 
-# The set of dependency files which are needed:
-set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/xcdai/Documents/Project_IRMV/Project_RAT_IRMV/IRMV_RAT_ws/src/vicon_bridge/vicon_sdk/DataStream/ViconCGStream/Dummy.cpp" "vicon_bridge/CMakeFiles/vicon_sdk.dir/vicon_sdk/DataStream/ViconCGStream/Dummy.cpp.o" "gcc" "vicon_bridge/CMakeFiles/vicon_sdk.dir/vicon_sdk/DataStream/ViconCGStream/Dummy.cpp.o.d"
-  "/home/xcdai/Documents/Project_IRMV/Project_RAT_IRMV/IRMV_RAT_ws/src/vicon_bridge/vicon_sdk/DataStream/ViconCGStreamClient/CGStreamReaderWriter.cpp" "vicon_bridge/CMakeFiles/vicon_sdk.dir/vicon_sdk/DataStream/ViconCGStreamClient/CGStreamReaderWriter.cpp.o" "gcc" "vicon_bridge/CMakeFiles/vicon_sdk.dir/vicon_sdk/DataStream/ViconCGStreamClient/CGStreamReaderWriter.cpp.o.d"
-  "/home/xcdai/Documents/Project_IRMV/Project_RAT_IRMV/IRMV_RAT_ws/src/vicon_bridge/vicon_sdk/DataStream/ViconCGStreamClient/ViconCGStreamBayer.cpp" "vicon_bridge/CMakeFiles/vicon_sdk.dir/vicon_sdk/DataStream/ViconCGStreamClient/ViconCGStreamBayer.cpp.o" "gcc" "vicon_bridge/CMakeFiles/vicon_sdk.dir/vicon_sdk/DataStream/ViconCGStreamClient/ViconCGStreamBayer.cpp.o.d"
-  "/home/xcdai/Documents/Project_IRMV/Project_RAT_IRMV/IRMV_RAT_ws/src/vicon_bridge/vicon_sdk/DataStream/ViconCGStreamClient/ViconCGStreamClient.cpp" "vicon_bridge/CMakeFiles/vicon_sdk.dir/vicon_sdk/DataStream/ViconCGStreamClient/ViconCGStreamClient.cpp.o" "gcc" "vicon_bridge/CMakeFiles/vicon_sdk.dir/vicon_sdk/DataStream/ViconCGStreamClient/ViconCGStreamClient.cpp.o.d"
-  "/home/xcdai/Documents/Project_IRMV/Project_RAT_IRMV/IRMV_RAT_ws/src/vicon_bridge/vicon_sdk/DataStream/ViconCGStreamClientSDK/CGClient.cpp" "vicon_bridge/CMakeFiles/vicon_sdk.dir/vicon_sdk/DataStream/ViconCGStreamClientSDK/CGClient.cpp.o" "gcc" "vicon_bridge/CMakeFiles/vicon_sdk.dir/vicon_sdk/DataStream/ViconCGStreamClientSDK/CGClient.cpp.o.d"
-  "/home/xcdai/Documents/Project_IRMV/Project_RAT_IRMV/IRMV_RAT_ws/src/vicon_bridge/vicon_sdk/DataStream/ViconDataStreamSDKCore/CoreClient.cpp" "vicon_bridge/CMakeFiles/vicon_sdk.dir/vicon_sdk/DataStream/ViconDataStreamSDKCore/CoreClient.cpp.o" "gcc" "vicon_bridge/CMakeFiles/vicon_sdk.dir/vicon_sdk/DataStream/ViconDataStreamSDKCore/CoreClient.cpp.o.d"
-  "/home/xcdai/Documents/Project_IRMV/Project_RAT_IRMV/IRMV_RAT_ws/src/vicon_bridge/vicon_sdk/DataStream/ViconDataStreamSDKCore/CoreClientTimingLog.cpp" "vicon_bridge/CMakeFiles/vicon_sdk.dir/vicon_sdk/DataStream/ViconDataStreamSDKCore/CoreClientTimingLog.cpp.o" "gcc" "vicon_bridge/CMakeFiles/vicon_sdk.dir/vicon_sdk/DataStream/ViconDataStreamSDKCore/CoreClientTimingLog.cpp.o.d"
-  "/home/xcdai/Documents/Project_IRMV/Project_RAT_IRMV/IRMV_RAT_ws/src/vicon_bridge/vicon_sdk/DataStream/ViconDataStreamSDKCore/RetimerUtils.cpp" "vicon_bridge/CMakeFiles/vicon_sdk.dir/vicon_sdk/DataStream/ViconDataStreamSDKCore/RetimerUtils.cpp.o" "gcc" "vicon_bridge/CMakeFiles/vicon_sdk.dir/vicon_sdk/DataStream/ViconDataStreamSDKCore/RetimerUtils.cpp.o.d"
-  "/home/xcdai/Documents/Project_IRMV/Project_RAT_IRMV/IRMV_RAT_ws/src/vicon_bridge/vicon_sdk/DataStream/ViconDataStreamSDKCore/RetimingClient.cpp" "vicon_bridge/CMakeFiles/vicon_sdk.dir/vicon_sdk/DataStream/ViconDataStreamSDKCore/RetimingClient.cpp.o" "gcc" "vicon_bridge/CMakeFiles/vicon_sdk.dir/vicon_sdk/DataStream/ViconDataStreamSDKCore/RetimingClient.cpp.o.d"
-  "/home/xcdai/Documents/Project_IRMV/Project_RAT_IRMV/IRMV_RAT_ws/src/vicon_bridge/vicon_sdk/DataStream/ViconDataStreamSDKCore/RetimingCore.cpp" "vicon_bridge/CMakeFiles/vicon_sdk.dir/vicon_sdk/DataStream/ViconDataStreamSDKCore/RetimingCore.cpp.o" "gcc" "vicon_bridge/CMakeFiles/vicon_sdk.dir/vicon_sdk/DataStream/ViconDataStreamSDKCore/RetimingCore.cpp.o.d"
-  "/home/xcdai/Documents/Project_IRMV/Project_RAT_IRMV/IRMV_RAT_ws/src/vicon_bridge/vicon_sdk/DataStream/ViconDataStreamSDKCore/SegmentPoseReader.cpp" "vicon_bridge/CMakeFiles/vicon_sdk.dir/vicon_sdk/DataStream/ViconDataStreamSDKCore/SegmentPoseReader.cpp.o" "gcc" "vicon_bridge/CMakeFiles/vicon_sdk.dir/vicon_sdk/DataStream/ViconDataStreamSDKCore/SegmentPoseReader.cpp.o.d"
-  "/home/xcdai/Documents/Project_IRMV/Project_RAT_IRMV/IRMV_RAT_ws/src/vicon_bridge/vicon_sdk/DataStream/ViconDataStreamSDKCore/WirelessConfiguration.cpp" "vicon_bridge/CMakeFiles/vicon_sdk.dir/vicon_sdk/DataStream/ViconDataStreamSDKCore/WirelessConfiguration.cpp.o" "gcc" "vicon_bridge/CMakeFiles/vicon_sdk.dir/vicon_sdk/DataStream/ViconDataStreamSDKCore/WirelessConfiguration.cpp.o.d"
-  "/home/xcdai/Documents/Project_IRMV/Project_RAT_IRMV/IRMV_RAT_ws/src/vicon_bridge/vicon_sdk/DataStream/ViconDataStreamSDKCoreUtils/AxisMapping.cpp" "vicon_bridge/CMakeFiles/vicon_sdk.dir/vicon_sdk/DataStream/ViconDataStreamSDKCoreUtils/AxisMapping.cpp.o" "gcc" "vicon_bridge/CMakeFiles/vicon_sdk.dir/vicon_sdk/DataStream/ViconDataStreamSDKCoreUtils/AxisMapping.cpp.o.d"
-  "/home/xcdai/Documents/Project_IRMV/Project_RAT_IRMV/IRMV_RAT_ws/src/vicon_bridge/vicon_sdk/DataStream/ViconDataStreamSDKCoreUtils/ClientUtils.cpp" "vicon_bridge/CMakeFiles/vicon_sdk.dir/vicon_sdk/DataStream/ViconDataStreamSDKCoreUtils/ClientUtils.cpp.o" "gcc" "vicon_bridge/CMakeFiles/vicon_sdk.dir/vicon_sdk/DataStream/ViconDataStreamSDKCoreUtils/ClientUtils.cpp.o.d"
-  "/home/xcdai/Documents/Project_IRMV/Project_RAT_IRMV/IRMV_RAT_ws/src/vicon_bridge/vicon_sdk/DataStream/ViconDataStreamSDK_C/CClient.cpp" "vicon_bridge/CMakeFiles/vicon_sdk.dir/vicon_sdk/DataStream/ViconDataStreamSDK_C/CClient.cpp.o" "gcc" "vicon_bridge/CMakeFiles/vicon_sdk.dir/vicon_sdk/DataStream/ViconDataStreamSDK_C/CClient.cpp.o.d"
-  "/home/xcdai/Documents/Project_IRMV/Project_RAT_IRMV/IRMV_RAT_ws/src/vicon_bridge/vicon_sdk/DataStream/ViconDataStreamSDK_C/CRetimingClient.cpp" "vicon_bridge/CMakeFiles/vicon_sdk.dir/vicon_sdk/DataStream/ViconDataStreamSDK_C/CRetimingClient.cpp.o" "gcc" "vicon_bridge/CMakeFiles/vicon_sdk.dir/vicon_sdk/DataStream/ViconDataStreamSDK_C/CRetimingClient.cpp.o.d"
-  "/home/xcdai/Documents/Project_IRMV/Project_RAT_IRMV/IRMV_RAT_ws/src/vicon_bridge/vicon_sdk/DataStream/ViconDataStreamSDK_CPP/DataStreamClient.cpp" "vicon_bridge/CMakeFiles/vicon_sdk.dir/vicon_sdk/DataStream/ViconDataStreamSDK_CPP/DataStreamClient.cpp.o" "gcc" "vicon_bridge/CMakeFiles/vicon_sdk.dir/vicon_sdk/DataStream/ViconDataStreamSDK_CPP/DataStreamClient.cpp.o.d"
-  "/home/xcdai/Documents/Project_IRMV/Project_RAT_IRMV/IRMV_RAT_ws/src/vicon_bridge/vicon_sdk/DataStream/ViconDataStreamSDK_CPP/DataStreamRetimingClient.cpp" "vicon_bridge/CMakeFiles/vicon_sdk.dir/vicon_sdk/DataStream/ViconDataStreamSDK_CPP/DataStreamRetimingClient.cpp.o" "gcc" "vicon_bridge/CMakeFiles/vicon_sdk.dir/vicon_sdk/DataStream/ViconDataStreamSDK_CPP/DataStreamRetimingClient.cpp.o.d"
-  "/home/xcdai/Documents/Project_IRMV/Project_RAT_IRMV/IRMV_RAT_ws/src/vicon_bridge/vicon_sdk/StreamCommon/CGStreamAsyncReaderWriter.cpp" "vicon_bridge/CMakeFiles/vicon_sdk.dir/vicon_sdk/StreamCommon/CGStreamAsyncReaderWriter.cpp.o" "gcc" "vicon_bridge/CMakeFiles/vicon_sdk.dir/vicon_sdk/StreamCommon/CGStreamAsyncReaderWriter.cpp.o.d"
+# The include file search paths:
+set(CMAKE_CXX_TARGET_INCLUDE_PATH
+  "/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/devel/include"
+  "/opt/ros/noetic/include"
+  "/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp"
+  "/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/src/vicon_bridge/vicon_sdk/DataStream"
+  "/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/src/vicon_bridge/vicon_sdk"
   )
 
-# Targets to which this target links which contain Fortran sources.
-set(CMAKE_Fortran_TARGET_LINKED_INFO_FILES
+# Targets to which this target links.
+set(CMAKE_TARGET_LINKED_INFO_FILES
   )
 
 # Fortran module output directory.

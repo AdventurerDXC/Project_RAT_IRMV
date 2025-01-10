@@ -1,8 +1,7 @@
 file(REMOVE_RECURSE
-  "/home/xcdai/Documents/Project_IRMV/Project_RAT_IRMV/IRMV_RAT_ws/devel/lib/vicon_bridge/tf_distort"
-  "/home/xcdai/Documents/Project_IRMV/Project_RAT_IRMV/IRMV_RAT_ws/devel/lib/vicon_bridge/tf_distort.pdb"
+  "/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/devel/lib/vicon_bridge/tf_distort"
+  "/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/devel/lib/vicon_bridge/tf_distort.pdb"
   "CMakeFiles/tf_distort.dir/src/tf_distort.cpp.o"
-  "CMakeFiles/tf_distort.dir/src/tf_distort.cpp.o.d"
 )
 
 # Per-language clean rules from dependency scanning.

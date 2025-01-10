@@ -1,12 +1,12 @@
 
 "use strict";
 
-let LenCmd = require('./LenCmd.js');
 let Sensor = require('./Sensor.js');
+let LenCmd = require('./LenCmd.js');
 let PreCmd = require('./PreCmd.js');
 
 module.exports = {
-  LenCmd: LenCmd,
   Sensor: Sensor,
+  LenCmd: LenCmd,
   PreCmd: PreCmd,
 };

@@ -3,7 +3,7 @@ import rospy
 from math import sin, cos, pi
 from inv_kinematics.msg import footend_pos
 
-dutyRatio = 0.75  # 占空比为0.75个周期
+dutyRatio = 0.5  # 占空比为0.75个周期
 cycle = 1         # 单步周期
 time = 0          # 当前时刻
 step = 0.05       # 步长
@@ -48,6 +48,11 @@ def trot_gait(time, rhythm, pace, height):
             x_br = xb0 + pace
             z_fl = z0
             z_br = z0
+        if abs(time - (1-cycle*(1-dutyRatio)/2)) <= step:
+            x_fr -= pace * 0.5
+            x_bl -= pace * 0.5
+            # z_fr = z0 + 2
+            # z_bl = z0 + 2
     else:
         x_fl = xf0
         x_br = xb0
@@ -69,6 +74,11 @@ def trot_gait(time, rhythm, pace, height):
             x_bl = xb0 + pace
             z_fr = z0
             z_bl = z0
+        if abs(time - (1-cycle*(1-dutyRatio)/2)) <= step:
+            x_fl -= pace * 0.5
+            x_br -= pace * 0.5
+            # z_fl = z0 + 2
+            # z_br = z0 + 2
 
     return x_fl, x_fr, x_bl, x_br, y_fl, y_fr, y_bl, y_br, z_fl, z_fr, z_bl, z_br
 
@@ -86,14 +96,14 @@ def talker():
             time += step
             rhythm += 1
             
-        footendXYZ = trot_gait(time, rhythm, 0, 10)
+        footendXYZ = trot_gait(time, rhythm, 20, 20)
 
         footend_data.footend_FL = [footendXYZ[0], footendXYZ[4], footendXYZ[8]]
         footend_data.footend_FR = [footendXYZ[1], footendXYZ[5], footendXYZ[9]]
         footend_data.footend_BL = [footendXYZ[2], footendXYZ[6], footendXYZ[10]]
         footend_data.footend_BR = [footendXYZ[3], footendXYZ[7], footendXYZ[11]]
 
-        rospy.loginfo(f"Received footend-FL position: {footend_data.footend_FL}")
+        # rospy.loginfo(f"Received footend-FL position: {footend_data.footend_FL}")
         pub.publish(footend_data)
         rate.sleep()
 

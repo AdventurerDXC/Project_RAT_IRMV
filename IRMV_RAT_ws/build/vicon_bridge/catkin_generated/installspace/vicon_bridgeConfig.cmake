@@ -67,14 +67,14 @@ set(vicon_bridge_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("FALSE" STREQUAL "TRUE")
-  set(vicon_bridge_SOURCE_PREFIX /home/xcdai/Documents/Project_IRMV/Project_RAT_IRMV/IRMV_RAT_ws/src/vicon_bridge)
-  set(vicon_bridge_DEVEL_PREFIX /home/xcdai/Documents/Project_IRMV/Project_RAT_IRMV/IRMV_RAT_ws/devel)
+  set(vicon_bridge_SOURCE_PREFIX /home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/src/vicon_bridge)
+  set(vicon_bridge_DEVEL_PREFIX /home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/devel)
   set(vicon_bridge_INSTALL_PREFIX "")
   set(vicon_bridge_PREFIX ${vicon_bridge_DEVEL_PREFIX})
 else()
   set(vicon_bridge_SOURCE_PREFIX "")
   set(vicon_bridge_DEVEL_PREFIX "")
-  set(vicon_bridge_INSTALL_PREFIX /home/xcdai/Documents/Project_IRMV/Project_RAT_IRMV/IRMV_RAT_ws/install)
+  set(vicon_bridge_INSTALL_PREFIX /home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/install)
   set(vicon_bridge_PREFIX ${vicon_bridge_INSTALL_PREFIX})
 endif()
 
@@ -154,7 +154,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/xcdai/Documents/Project_IRMV/Project_RAT_IRMV/IRMV_RAT_ws/install/lib;/home/xcdai/Documents/Project_IRMV/Project_RAT_IRMV/IRMV_RAT_ws/devel/lib;/home/xcdai/Documents/Coverage_Path_Planning_ROS/devel/lib;/opt/ros/noetic/lib)
+    foreach(path /home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/install/lib;/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/devel/lib;/opt/ros/noetic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)

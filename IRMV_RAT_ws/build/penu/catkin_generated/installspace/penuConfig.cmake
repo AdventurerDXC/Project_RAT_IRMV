@@ -67,14 +67,14 @@ set(penu_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("FALSE" STREQUAL "TRUE")
-  set(penu_SOURCE_PREFIX /home/xcdai/Documents/Project_IRMV/Project_RAT_IRMV/IRMV_RAT_ws/src/penu)
-  set(penu_DEVEL_PREFIX /home/xcdai/Documents/Project_IRMV/Project_RAT_IRMV/IRMV_RAT_ws/devel)
+  set(penu_SOURCE_PREFIX /home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/src/penu)
+  set(penu_DEVEL_PREFIX /home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/devel)
   set(penu_INSTALL_PREFIX "")
   set(penu_PREFIX ${penu_DEVEL_PREFIX})
 else()
   set(penu_SOURCE_PREFIX "")
   set(penu_DEVEL_PREFIX "")
-  set(penu_INSTALL_PREFIX /home/xcdai/Documents/Project_IRMV/Project_RAT_IRMV/IRMV_RAT_ws/install)
+  set(penu_INSTALL_PREFIX /home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/install)
   set(penu_PREFIX ${penu_INSTALL_PREFIX})
 endif()
 
@@ -154,7 +154,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/xcdai/Documents/Project_IRMV/Project_RAT_IRMV/IRMV_RAT_ws/install/lib;/home/xcdai/Documents/Project_IRMV/Project_RAT_IRMV/IRMV_RAT_ws/devel/lib;/home/xcdai/Documents/Coverage_Path_Planning_ROS/devel/lib;/opt/ros/noetic/lib)
+    foreach(path /home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/install/lib;/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/devel/lib;/opt/ros/noetic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)

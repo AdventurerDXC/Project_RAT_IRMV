@@ -1,10 +1,10 @@
 
 "use strict";
 
-let viconGrabPose = require('./viconGrabPose.js')
 let viconCalibrateSegment = require('./viconCalibrateSegment.js')
+let viconGrabPose = require('./viconGrabPose.js')
 
 module.exports = {
-  viconGrabPose: viconGrabPose,
   viconCalibrateSegment: viconCalibrateSegment,
+  viconGrabPose: viconGrabPose,
 };

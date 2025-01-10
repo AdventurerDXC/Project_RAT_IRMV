@@ -1,4 +1,4 @@
-prefix=/home/xcdai/Documents/Project_IRMV/Project_RAT_IRMV/IRMV_RAT_ws/devel
+prefix=/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/devel
 
 Name: servo_control
 Description: Description of servo_control

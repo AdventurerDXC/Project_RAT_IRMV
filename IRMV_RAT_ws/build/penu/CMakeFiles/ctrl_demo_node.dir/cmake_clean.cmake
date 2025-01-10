@@ -1,8 +1,7 @@
 file(REMOVE_RECURSE
-  "/home/xcdai/Documents/Project_IRMV/Project_RAT_IRMV/IRMV_RAT_ws/devel/lib/penu/ctrl_demo_node"
-  "/home/xcdai/Documents/Project_IRMV/Project_RAT_IRMV/IRMV_RAT_ws/devel/lib/penu/ctrl_demo_node.pdb"
+  "/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/devel/lib/penu/ctrl_demo_node"
+  "/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/devel/lib/penu/ctrl_demo_node.pdb"
   "CMakeFiles/ctrl_demo_node.dir/src/ctrl_demo.cpp.o"
-  "CMakeFiles/ctrl_demo_node.dir/src/ctrl_demo.cpp.o.d"
 )
 
 # Per-language clean rules from dependency scanning.

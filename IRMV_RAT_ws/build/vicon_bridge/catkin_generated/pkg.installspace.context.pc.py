@@ -4,5 +4,5 @@ PROJECT_PKG_CONFIG_INCLUDE_DIRS = "${prefix}/include".split(';') if "${prefix}/i
 PROJECT_CATKIN_DEPENDS = "dynamic_reconfigure;geometry_msgs;message_runtime;roscpp".replace(';', ' ')
 PKG_CONFIG_LIBRARIES_WITH_PREFIX = "".split(';') if "" != "" else []
 PROJECT_NAME = "vicon_bridge"
-PROJECT_SPACE_DIR = "/home/xcdai/Documents/Project_IRMV/Project_RAT_IRMV/IRMV_RAT_ws/install"
+PROJECT_SPACE_DIR = "/home/xcdai/Documents/Project_RAT_IRMV/IRMV_RAT_ws/install"
 PROJECT_VERSION = "1.0.1"
