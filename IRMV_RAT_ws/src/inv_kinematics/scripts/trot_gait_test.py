@@ -4,22 +4,22 @@ from math import sin, cos, pi
 from inv_kinematics.msg import footend_pos
 
 dutyRatio = 0.75  # 占空比为0.75个周期
-cycle = 1         # 单步周期
+cycle = 0.5         # 单步周期
 time = 0          # 当前时刻
 step = 0.05       # 步长
 rhythm = 0        # 步态节律（偶数为左前和右后腿摆动，奇数为右前和左后腿摆动）
-xf0 = 58          # 起始点足端在vicon坐标系下的偏置
-xb0 = -36.5
+xf0 = 38          # 起始点足端在vicon坐标系下的偏置
+xb0 = -56.5
 y0 = 40.15
 z0 = -90
 
 def trot_gait(time, rhythm, pace, height):
     # 小跑步态执行函数，pace为摆线的垂直投影长度，height为摆线的最大高度
     t1 = cycle*(1-dutyRatio)/2
-    t2 = 1-t1
+    t2 = cycle - t1
     valid_t_range1 = (time > t1)
     valid_t_range2 = (time < t2)
-    sigma = 2 * pi * (time - t1) / (dutyRatio * cycle)
+    sigma = 2 * pi * (time - t1) / (cycle * dutyRatio)
     zt = height * (1 - cos(sigma)) / 2
     xt = pace * ((sigma - sin(sigma)) / (2 * pi))
 
