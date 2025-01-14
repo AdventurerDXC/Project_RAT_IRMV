@@ -3,7 +3,7 @@ import rospy
 from math import sin, cos, pi
 from inv_kinematics.msg import footend_pos
 
-dutyRatio = 0.75  # 占空比为0.75个周期
+dutyRatio = 0.5  # 占空比为0.75个周期
 cycle = 1         # 单步周期
 time = 0          # 当前时刻
 step = 0.05       # 步长
@@ -30,70 +30,73 @@ def trot_gait(time, rhythm, pace, height):
     y_br = -y0
 
     if rhythm % 2 == 0:
+        x_fr = xf0
+        x_bl = xb0
         z_fr = z0
         z_bl = z0
 
         if valid_t_range1 and valid_t_range2:
             x_fl = xf0 + xt
             x_br = xb0 + xt
-            x_fr = xf0 + pace - xt
-            x_bl = xb0 + pace - xt
             z_fl = z0 + zt
             z_br = z0 + zt
         if not valid_t_range1:
             x_fl = xf0
             x_br = xb0
-            x_fr = xf0 + pace
-            x_bl = xb0 + pace
             z_fl = z0
             z_br = z0
         if not valid_t_range2:
-            x_fl = xf0 + pace
-            x_br = xb0 + pace
-            x_fr = xf0
-            x_bl = xb0
+            x_fl = xf0 + pace - pace * (time - t2)/(cycle - t2)
+            x_br = xb0 + pace - pace * (time - t2)/(cycle - t2)
             z_fl = z0
             z_br = z0
-
+        if abs(time - t2)  <= step:
+            x_fr -= pace * 0.1
+            x_bl -= pace * 0.1
+            # z_fr = z0 + 2
+            # z_bl = z0 + 2
     else:
+        x_fl = xf0
+        x_br = xb0
         z_fl = z0
         z_br = z0
 
         if valid_t_range1 and valid_t_range2:  
             x_fr = xf0 + xt
             x_bl = xb0 + xt
-            x_fl = xf0 + pace - xt
-            x_br = xb0 + pace - xt
             z_fr = z0 + zt
             z_bl = z0 + zt
         if not valid_t_range1:
             x_fr = xf0
             x_bl = xb0
-            x_fl = xf0 + pace
-            x_br = xb0 + pace
             z_fr = z0
             z_bl = z0
         if not valid_t_range2:
-            x_fr = xf0 + pace
-            x_bl = xb0 + pace
-            x_fl = xf0
-            x_br = xb0
+            x_fr = xf0 + pace - pace * (time - t2)/(cycle - t2)
+            x_bl = xb0 + pace - pace * (time - t2)/(cycle - t2)
             z_fr = z0
             z_bl = z0
-
+        if abs(time - (1-cycle*(1-dutyRatio)/2)) <= step:
+            x_fl -= pace * 0.05
+            x_br -= pace * 0.05
+            # z_fl = z0 + 2
+            # z_br = z0 + 2
 
     return x_fl, x_fr, x_bl, x_br, y_fl, y_fr, y_bl, y_br, z_fl, z_fr, z_bl, z_br
 
 def initialize():
-    init_time = rospy.get_time() + 5
+    init_time = 5
     footend_data = footend_pos()
     footend_data.footend_FL = [xf0, y0, z0]
     footend_data.footend_FR = [xf0, -y0, z0]
     footend_data.footend_BL = [xb0, y0, z0]
     footend_data.footend_BR = [xb0, -y0, z0]
-    while not rospy.is_shutdown() and rospy.get_time() < init_time:
+    while not rospy.is_shutdown():
         pub.publish(footend_data)
         rate.sleep()
+        init_time -= 1/20
+        if(init_time <= 0):
+            break
 
 def talker():
     global time, rhythm
