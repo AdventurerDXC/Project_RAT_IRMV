@@ -3,101 +3,135 @@ import rospy
 from math import sin, cos, pi
 from inv_kinematics.msg import footend_pos
 
-dutyRatio = 0.25  # 占空比为0.25个周期
-cycle = 1.2        # 循环周期
-time = 0         # 当前时刻
-step = 0.05     # 步长
-xf0 = 58          # 起始点足端在vicon坐标系下的偏置
-xb0 = -36.5
+cycle = 4             # 循环周期(4s)
+pace = 18             # 步长(mm)
+max_phase = 4         # 阶段（分解为4个）
+step = cycle/max_phase   # 单步周期(1s)
+xf0 = 27              # 起始点足端在身体坐标系下的偏置
+xb0 = -67.5
 y0 = 40.15
-z0 = -100
+z0 = -90
 
-def trot_gait(time, pace, height):
-    # 小跑步态执行函数，pace为摆线的垂直投影长度，height为摆线的最大高度
-    sigma = 2 * pi * time / (dutyRatio * cycle)
-    zt = height * (1 - cos(sigma)) / 2
-    xt = pace * ((sigma - sin(sigma)) / (2 * pi))
+def step_planner(t, x, d, z, h):
+    if t <= step/3:
+        z = z + t/(step/3)*(h+0.2*h)
+    elif t <= 2*step/3:
+        z = z + h + 0.2*h
+        x = x + (t-step/3)/(step/3)*d
+    else:
+        z = z + h + 0.2*h - (t-2*step/3)/(step/3)*(0.2*h)
+        x = x + d
+    return x, z
 
-    # 输出y
-    y_fl = y0
-    y_fr = -y0
-    y_bl = y0
-    y_br = -y0
+def walk_gait(time, phase, height_r=0, height_f=0, pace=pace):
+    # walk步态执行函数，pace为足端落脚点的水平距离，height为足端落脚点的高度差, phase为一个步态周期的阶段
 
-    if time <= dutyRatio*cycle:      # 左前足迈步，其余不动
-        # 输出x
-        x_fl = xf0 + xt
+    if phase == 0:
+        y_fl = y0 - 8
+        y_fr = -y0 - 8
+        y_bl = y0 - 8
+        y_br = -y0 - 8
+
+        x_br, z_br = step_planner(time-phase*step, xb0, pace, z0, height_r)
         x_fr = xf0
-        x_bl = xb0
-        x_br = xb0
-        # 输出z
-        z_fl = z0 + zt
         z_fr = z0
-        z_bl = z0
-        z_br = z0
-    elif time <= 2*dutyRatio*cycle:  # 右后足迈步，其余不动
-        # 输出x
-        x_fl = xf0
-        x_fr = xf0
         x_bl = xb0
-        x_br = xb0 + xt - pace
-        # 输出z
-        z_fl = z0
-        z_fr = z0
         z_bl = z0
-        z_br = z0 + zt
-    elif time <= 3*dutyRatio*cycle:  # 右前足迈步，其余不动
-        # 输出x
         x_fl = xf0
-        x_fr = xf0 + xt - 2*pace
+        z_fl = z0
+
+    elif phase == 1:
+        y_fl = y0 - 8
+        y_fr = -y0 - 8
+        y_bl = y0 - 8
+        y_br = -y0 - 8
+
+        x_br = xb0 + pace
+        # z_br = z0 + height_r
+        z_br = z0
+        x_fr, z_fr = step_planner(time-phase*step, xf0, pace, z0, height_f)
         x_bl = xb0
-        x_br = xb0
-        # 输出z
-        z_fl = z0
-        z_fr = z0 + zt
         z_bl = z0
-        z_br = z0
-    else:  # 左后足迈步，其余不动
-        # 输出x
         x_fl = xf0
-        x_fr = xf0
-        x_bl = xb0 + xt - 3*pace
-        x_br = xb0
-        # 输出z
         z_fl = z0
-        z_fr = z0
-        z_bl = z0 + zt
+
+    elif phase == 2:
+        y_fl = y0 + 8
+        y_fr = -y0 + 8
+        y_bl = y0 + 8
+        y_br = -y0 + 8
+
+        x_br = xb0 + pace
+        # z_br = z0 + height_r
         z_br = z0
+        x_fr = xf0 + pace
+        z_fr = z0 + height_f
+        x_bl, z_bl = step_planner(time-phase*step, xb0, pace, z0, height_r)
+        x_fl = xf0
+        z_fl = z0
+
+    elif phase == 3:
+        y_fl = y0 + 8
+        y_fr = -y0 + 8
+        y_bl = y0 + 8
+        y_br = -y0 + 8
+
+        x_br = xb0 + pace
+        # z_br = z0 + height_r
+        z_br = z0
+        x_fr = xf0 + pace
+        z_fr = z0 + height_f
+        x_bl = x_br
+        z_bl = z_br
+        x_fl, z_fl = step_planner(time-phase*step, xf0, pace, z0, height_f)
 
     return x_fl, x_fr, x_bl, x_br, y_fl, y_fr, y_bl, y_br, z_fl, z_fr, z_bl, z_br
 
-def talker():
-    global time
-    pub = rospy.Publisher('/ratbot/footend/pos', footend_pos, queue_size=10)
-    rospy.init_node('cpg_node', anonymous=False)
-    rate = rospy.Rate(20)  # 20hz
+def initialize():
+    init_time = rospy.get_time() + 5
     footend_data = footend_pos()
+    footend_data.footend_FL = [xf0, y0, z0]
+    footend_data.footend_FR = [xf0, -y0, z0]
+    footend_data.footend_BL = [xb0, y0, z0]
+    footend_data.footend_BR = [xb0, -y0, z0]
+    while not rospy.is_shutdown() and rospy.get_time() < init_time:
+        pub.publish(footend_data)
+        rate.sleep()
+
+def talker():
+    phase = 0
+    ref_time = rospy.get_time()
+    footend_data = footend_pos()
+    height_list = [[0,24], [0,0], [0,0], [0,0], [0,0], [24,0]]
+    i = 0
     
     while not rospy.is_shutdown():
+        time = rospy.get_time() - ref_time
+        if time - phase*step >= step:
+            phase = (phase + 1) % max_phase
         if time >= cycle:  # 一个完整的运动周期结束walk
+            ref_time = rospy.get_time()
             time = 0
-        else:
-            time += step
+            i = i + 1
             
-        footendXYZ = trot_gait(time, 25, 15)
-
+        footendXYZ = walk_gait(time, phase, height_list[i][0], height_list[i][1])
+        
         footend_data.footend_FL = [footendXYZ[0], footendXYZ[4], footendXYZ[8]]
         footend_data.footend_FR = [footendXYZ[1], footendXYZ[5], footendXYZ[9]]
         footend_data.footend_BL = [footendXYZ[2], footendXYZ[6], footendXYZ[10]]
         footend_data.footend_BR = [footendXYZ[3], footendXYZ[7], footendXYZ[11]]
 
-        rospy.loginfo(f"Received footend-FL position: {footend_data.footend_FL}")
+        # rospy.loginfo(f"Received footend-FL position: {footend_data.footend_FL}")
         pub.publish(footend_data)
         rate.sleep()
 
 
 if __name__ == '__main__':
     try:
+        rospy.init_node('cpg_node', anonymous=False)
+        pub = rospy.Publisher('/ratbot/footend/pos', footend_pos, queue_size=10)
+        rate = rospy.Rate(20)  # 20hz
+        initialize()
         talker()
     except rospy.ROSInterruptException:
         pass

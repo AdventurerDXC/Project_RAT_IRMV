@@ -10,6 +10,7 @@ export ROSLISP_PACKAGE_DIRECTORIES='/home/xcdai/Documents/Project_RAT_IRMV/build
 # modified environment variables
 export CMAKE_PREFIX_PATH="/home/xcdai/Documents/Project_RAT_IRMV/build/devel:$CMAKE_PREFIX_PATH"
 export LD_LIBRARY_PATH="/home/xcdai/Documents/Project_RAT_IRMV/build/devel/lib:$LD_LIBRARY_PATH"
+export PATH='/opt/ros/noetic/bin:/home/xcdai/.local/bin:/home/xcdai/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'
 export PKG_CONFIG_PATH="/home/xcdai/Documents/Project_RAT_IRMV/build/devel/lib/pkgconfig:$PKG_CONFIG_PATH"
 export PWD='/home/xcdai/Documents/Project_RAT_IRMV/build'
 export PYTHONPATH="/home/xcdai/Documents/Project_RAT_IRMV/build/devel/lib/python3/dist-packages:$PYTHONPATH"

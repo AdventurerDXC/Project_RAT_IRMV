@@ -88,8 +88,8 @@ def callback(servo_data):
 
     servoPulse = sum(servoPulse, [])
 
-    rospy.loginfo(f"Sent servo position: {servoPulse}")
-    setPWMServoMoveByArray(servoPulse, 12, 90)
+    # rospy.loginfo(f"Sent servo position: {servoPulse}")
+    setPWMServoMoveByArray(servoPulse, 12, 42)
 
 if __name__ == '__main__':
     listener()
