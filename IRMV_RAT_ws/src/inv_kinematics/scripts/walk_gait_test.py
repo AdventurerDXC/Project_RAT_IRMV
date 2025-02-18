@@ -4,7 +4,7 @@ from math import sin, cos, pi
 from inv_kinematics.msg import footend_pos
 
 cycle = 4             # 循环周期(4s)
-pace = 15             # 步长(mm)
+pace = 20             # 步长(mm)
 max_phase = 4         # 阶段（分解为4个）
 step = cycle/max_phase   # 单步周期(1s)
 xf0 = 27              # 起始点足端在身体坐标系下的偏置
