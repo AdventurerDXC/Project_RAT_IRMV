@@ -6,7 +6,6 @@ from inv_kinematics.msg import footend_pos
 dutyRatio = 0.75  # 占空比为0.75个周期
 cycle = 0.5         # 单步周期
 time = 0          # 当前时刻
-step = 0.05       # 步长
 rhythm = 0        # 步态节律（偶数为左前和右后腿摆动，奇数为右前和左后腿摆动）
 xf0 = 38          # 起始点足端在身体坐标系下的偏置
 xb0 = -56.5
@@ -29,7 +28,7 @@ def trot_gait(time, rhythm, pace, height):
     y_bl = y0
     y_br = -y0
 
-    if rhythm % 2 == 0:
+    if rhythm == 0:
         z_fr = z0
         z_bl = z0
 
@@ -98,13 +97,16 @@ def initialize():
 def talker():
     global time, rhythm
     footend_data = footend_pos()
+    ref_time = rospy.get_time()
     
     while not rospy.is_shutdown():
+        time = rospy.get_time() - ref_time
         if time >= cycle:  # 一个完整的运动周期结束trot
+            ref_time = rospy.get_time()
             time = 0
-        else:
-            time += step
-            rhythm += 1
+            rhythm = 0
+        if time >= 0.5*cycle:
+            rhythm = 1
             
         footendXYZ = trot_gait(time, rhythm, 20, 20)
 
@@ -122,7 +124,7 @@ if __name__ == '__main__':
     try:
         rospy.init_node('cpg_node', anonymous=False)
         pub = rospy.Publisher('/ratbot/footend/pos', footend_pos, queue_size=10)
-        rate = rospy.Rate(10)  # 20hz
+        rate = rospy.Rate(20)  # 20hz
         initialize()
         talker()
     except rospy.ROSInterruptException:
