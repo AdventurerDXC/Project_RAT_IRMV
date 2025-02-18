@@ -122,7 +122,7 @@ if __name__ == '__main__':
     try:
         rospy.init_node('cpg_node', anonymous=False)
         pub = rospy.Publisher('/ratbot/footend/pos', footend_pos, queue_size=10)
-        rate = rospy.Rate(20)  # 20hz
+        rate = rospy.Rate(10)  # 20hz
         initialize()
         talker()
     except rospy.ROSInterruptException:

@@ -74,12 +74,14 @@ def callback(servo_data):
     # rospy.loginfo(f"Received servo-FL position: {servo_data.servo_FL}")
     servoPulse = [list(servo_data.servo_BR), list(servo_data.servo_BL), list(servo_data.servo_FL), list(servo_data.servo_FR)]
     for i in range(len(servoPulse)):
-        if i == 0 or i == 3:
+        if i == 0 or i == 2:
+            servoPulse[i][0] = int(1500 - servoPulse[i][0] / 180 * 2000)
+        else:
             servoPulse[i][0] = int(1500 + servoPulse[i][0] / 180 * 2000)
+        if i == 0 or i == 3:
             servoPulse[i][1] = int(1500 + (servoPulse[i][1] - 45) / 180 * 2000)
             servoPulse[i][2] = int(1500 + (servoPulse[i][2] - 45) / 180 * 2000)
         else:
-            servoPulse[i][0] = int(1500 - servoPulse[i][0] / 180 * 2000)
             servoPulse[i][1] = int(1500 - (servoPulse[i][1] - 45) / 180 * 2000)
             servoPulse[i][2] = int(1500 - (servoPulse[i][2] - 45) / 180 * 2000)
         servoPulse[i].insert(0, 4*i)

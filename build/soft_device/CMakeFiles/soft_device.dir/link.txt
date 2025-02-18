@@ -1,2 +1,0 @@
-/usr/bin/ar qc ../devel/lib/libsoft_device.a  CMakeFiles/soft_device.dir/src/penu_usart.cpp.o CMakeFiles/soft_device.dir/src/penu_vicon.cpp.o
-/usr/bin/ranlib ../devel/lib/libsoft_device.a

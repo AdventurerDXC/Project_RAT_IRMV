@@ -4,7 +4,7 @@ from math import sin, cos, pi
 from inv_kinematics.msg import footend_pos
 
 cycle = 4             # 循环周期(4s)
-pace = 18             # 步长(mm)
+pace = 15             # 步长(mm)
 max_phase = 4         # 阶段（分解为4个）
 step = cycle/max_phase   # 单步周期(1s)
 xf0 = 27              # 起始点足端在身体坐标系下的偏置
@@ -14,12 +14,12 @@ z0 = -90
 
 def step_planner(t, x, d, z, h):
     if t <= step/3:
-        z = z + t/(step/3)*(h+0.2*h)
+        z = z + t/(step/3)*(h+10)
     elif t <= 2*step/3:
-        z = z + h + 0.2*h
+        z = z + h + 10
         x = x + (t-step/3)/(step/3)*d
     else:
-        z = z + h + 0.2*h - (t-2*step/3)/(step/3)*(0.2*h)
+        z = z + h + 10 - (t-2*step/3)/(step/3)*(10)
         x = x + d
     return x, z
 
@@ -27,10 +27,10 @@ def walk_gait(time, phase, height_r=0, height_f=0, pace=pace):
     # walk步态执行函数，pace为足端落脚点的水平距离，height为足端落脚点的高度差, phase为一个步态周期的阶段
 
     if phase == 0:
-        y_fl = y0 - 8
-        y_fr = -y0 - 8
-        y_bl = y0 - 8
-        y_br = -y0 - 8
+        y_fl = y0 - 5
+        y_fr = -y0 - 5
+        y_bl = y0 - 5
+        y_br = -y0 - 5
 
         x_br, z_br = step_planner(time-phase*step, xb0, pace, z0, height_r)
         x_fr = xf0
@@ -41,14 +41,14 @@ def walk_gait(time, phase, height_r=0, height_f=0, pace=pace):
         z_fl = z0
 
     elif phase == 1:
-        y_fl = y0 - 8
-        y_fr = -y0 - 8
-        y_bl = y0 - 8
-        y_br = -y0 - 8
+        y_fl = y0 - 5
+        y_fr = -y0 - 5
+        y_bl = y0 - 5
+        y_br = -y0 - 5
 
         x_br = xb0 + pace
-        # z_br = z0 + height_r
-        z_br = z0
+        z_br = z0 + height_r
+        # z_br = z0
         x_fr, z_fr = step_planner(time-phase*step, xf0, pace, z0, height_f)
         x_bl = xb0
         z_bl = z0
@@ -56,14 +56,14 @@ def walk_gait(time, phase, height_r=0, height_f=0, pace=pace):
         z_fl = z0
 
     elif phase == 2:
-        y_fl = y0 + 8
-        y_fr = -y0 + 8
-        y_bl = y0 + 8
-        y_br = -y0 + 8
+        y_fl = y0 + 5
+        y_fr = -y0 + 5
+        y_bl = y0 + 5
+        y_br = -y0 + 5
 
         x_br = xb0 + pace
-        # z_br = z0 + height_r
-        z_br = z0
+        z_br = z0 + height_r
+        # z_br = z0
         x_fr = xf0 + pace
         z_fr = z0 + height_f
         x_bl, z_bl = step_planner(time-phase*step, xb0, pace, z0, height_r)
@@ -71,14 +71,14 @@ def walk_gait(time, phase, height_r=0, height_f=0, pace=pace):
         z_fl = z0
 
     elif phase == 3:
-        y_fl = y0 + 8
-        y_fr = -y0 + 8
-        y_bl = y0 + 8
-        y_br = -y0 + 8
+        y_fl = y0 + 5
+        y_fr = -y0 + 5
+        y_bl = y0 + 5
+        y_br = -y0 + 5
 
         x_br = xb0 + pace
-        # z_br = z0 + height_r
-        z_br = z0
+        z_br = z0 + height_r
+        # z_br = z0
         x_fr = xf0 + pace
         z_fr = z0 + height_f
         x_bl = x_br
@@ -102,7 +102,7 @@ def talker():
     phase = 0
     ref_time = rospy.get_time()
     footend_data = footend_pos()
-    height_list = [[0,24], [0,0], [0,0], [0,0], [0,0], [24,0]]
+    height_list = [[0,15], [0,0], [0,0], [0,0], [0,0], [0,0], [15,0]]
     i = 0
     
     while not rospy.is_shutdown():
@@ -113,8 +113,11 @@ def talker():
             ref_time = rospy.get_time()
             time = 0
             i = i + 1
-            
-        footendXYZ = walk_gait(time, phase, height_list[i][0], height_list[i][1])
+
+        if i <= 1:    
+            footendXYZ = walk_gait(time, phase, 0, 16)
+        else:
+            footendXYZ = walk_gait(time, phase, 0, 0)
         
         footend_data.footend_FL = [footendXYZ[0], footendXYZ[4], footendXYZ[8]]
         footend_data.footend_FR = [footendXYZ[1], footendXYZ[5], footendXYZ[9]]

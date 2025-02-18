@@ -1,8 +1,0 @@
-prefix=/home/xcdai/Documents/Project_RAT_IRMV/build/devel
-
-Name: penu
-Description: Description of penu
-Version: 0.0.0
-Cflags: -I/home/xcdai/Documents/Project_RAT_IRMV/build/devel/include
-Libs: -L${prefix}/lib 
-Requires: rospy roscpp std_msgs geometry_msgs sensor_msgs message_runtime cv_bridge
